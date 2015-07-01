@@ -1,0 +1,9 @@
+{
+  "name": "c25k web",
+  "description": "A web-based Couch-to-5k trainer",
+  "launch_path": "/index.html",
+  "developer": {
+    "name": "Les Orchard",
+    "url": "http://lmorchard.com"
+  }
+}

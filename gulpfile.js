@@ -11,7 +11,7 @@ var transform = require('vinyl-transform');
 var tap = require('gulp-tap');
 
 gulp.task('build', [
-  'stylus', 'markup', 'browserify-app'
+  'stylus', 'assets', 'browserify-app'
 ]);
 
 var browserified = function () {
@@ -40,8 +40,8 @@ gulp.task('stylus', function () {
     .pipe(connect.reload());
 });
 
-gulp.task('markup', function () {
-  return gulp.src('./src/**/*.html')
+gulp.task('assets', function () {
+  return gulp.src(['src/manifest.webapp', './src/**/*.html'])
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());
 });
