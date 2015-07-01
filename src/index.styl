@@ -1,0 +1,52 @@
+html, body, .app { height: 100% }
+
+body {
+  background-color: #111;
+  color: #eee;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font: 12px sans-serif;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.app h1 {
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  color: #111;
+  text-align: center;
+}
+.app footer {
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  color: #111;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.app .main .timer {
+  display: block;
+  font-size: 3em;
+  text-align: center;
+}
+
+.app footer button {
+  flex-grow: 1;
+}
