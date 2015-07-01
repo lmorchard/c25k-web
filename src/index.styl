@@ -28,6 +28,7 @@ body {
   color: #111;
   text-align: center;
 }
+
 .app footer {
   width: 100%;
   height: 75px;
@@ -45,9 +46,20 @@ body {
   display: block;
   font-size: 3em;
   text-align: center;
+  font-family: monospace;
 }
 
 .app footer button {
   flex-grow: 1;
   font-size: 2em;
+}
+
+.app.playing footer button.playpause {
+  content: "pause";
+  color: red;
+}
+
+.app.paused footer button.playpause {
+  content: "play";
+  color: green;
 }

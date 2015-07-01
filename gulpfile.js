@@ -5,30 +5,24 @@ var gulp = require('gulp');
 var path = require('path');
 var stylus = require('gulp-stylus');
 var uglify = require('gulp-uglify');
+var source = require('vinyl-source-stream');
 var deploy = require('gulp-gh-pages');
 var babelify = require("babelify");
 var transform = require('vinyl-transform');
+var buffer = require('vinyl-buffer');
 var tap = require('gulp-tap');
 
 gulp.task('build', [
   'stylus', 'assets', 'browserify-app'
 ]);
 
-var browserified = function () {
-  return transform(function(filename) {
-    var opts = {
-      entries: [filename],
-      debug: true
-    };
-    return browserify(opts)
-      .transform(babelify)
-      .bundle();
-  });
-};
-
 gulp.task('browserify-app', function () {
-  return gulp.src('./src/index.js')
-    .pipe(browserified())
+  return browserify({ entries: ['./src/index.js'], debug: true })
+    .transform(babelify)
+    .bundle()
+    .pipe(source('index.js'))
+    .pipe(buffer())
+    .pipe(uglify())
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());
 });
