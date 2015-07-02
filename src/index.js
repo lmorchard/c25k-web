@@ -8,11 +8,12 @@ var DATA = require('./data/c25k.json');
 var Workout = require('./js/models/Workout');
 var workout = new Workout(DATA.workouts[0]);
 
-timer.on('change:running', function () {
-  var appRoot = $$('body .app');
-  appRoot.classList.remove(timer.running ? 'stopped' : 'running');
-  appRoot.classList.add(timer.running ? 'running' : 'stopped');
-});
+var WorkoutBar = require('./js/views/WorkoutBar');
+var workoutBar = new WorkoutBar({timer: timer, workout: workout});
+workoutBar.render();
+$$('.app .main .workout').appendChild(workoutBar.el);
+
+// TODO: Wrap the set of clocks up in its own view component?
 
 var Clock = require('./js/views/Clock');
 
@@ -42,13 +43,15 @@ timer.on('change:elapsed', function () {
   });
 });
 
+timer.on('change:running', function () {
+  var appRoot = $$('body .app');
+  appRoot.classList.remove(timer.running ? 'stopped' : 'running');
+  appRoot.classList.add(timer.running ? 'running' : 'stopped');
+});
+
 timer.on('change:elapsed', function () {
   workout.elapsed = timer.elapsed;
 })
-
-workout.on('change:currentEvent', function () {
-  $$('.app .main .event').innerHTML = workout.currentEvent.type;
-});
 
 $('.app footer button.playpause').on('click', function (ev) {
   timer.toggle();

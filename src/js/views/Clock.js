@@ -1,4 +1,4 @@
-var View = require('ampersand-view');
+var View = require('ampersand-view')
 var Utils = require('../utils');
 
 module.exports = View.extend({
@@ -15,27 +15,29 @@ module.exports = View.extend({
     minutes: {
       deps: ['time'],
       fn: function () {
-        return Utils.zeroPad(parseInt(this.time / 60000), 2);
+        return Utils.zeroPad(this.time / 60000, 2);
       }
     },
     seconds: {
       deps: ['time'],
       fn: function () {
-        return Utils.zeroPad(parseInt((this.time - (this.minutes * 60000)) / 1000), 2);
+        return Utils.zeroPad((this.time - (this.minutes * 60000)) / 1000, 2);
       }
     },
     decimal: {
       deps: ['time'],
       fn: function () {
-        return Utils.zeroPad(parseInt(this.time - (this.minutes * 60000) - (this.seconds * 1000)), 3);
+        return Utils.zeroPad(this.time - (this.minutes * 60000) - (this.seconds * 1000), 3);
       }
     }
   },
 
   template: [
     '<span class="timer">',
-    '  <span class="title" data-hook="title"></span>',
-    '  <span class="minutes" data-hook="minutes">0</span>:<span class="seconds" data-hook="seconds">00</span>.<span class="decimal" data-hook="decimal">0</span>',
+    '<span class="title" data-hook="title"></span>',
+    ' <span class="minutes" data-hook="minutes">00</span>',
+    ':<span class="seconds" data-hook="seconds">00</span>',
+    // '.<span class="decimal" data-hook="decimal">000</span>',
     '</span>'
   ].join(''),
 
