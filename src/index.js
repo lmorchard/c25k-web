@@ -14,18 +14,32 @@ timer.on('change:running', function () {
   appRoot.classList.add(timer.running ? 'running' : 'stopped');
 });
 
+var Clock = require('./js/views/Clock');
+
+var clocks = {
+  elapsed: new Clock({ type: 'elapsed', title: 'Elapsed', time: 0 }),
+  current: new Clock({ type: 'current', title: '', time: 0 }),
+  remaining: new Clock({ type: 'remaining', title: 'Remaining', time: 0 })
+};
+
+var timersRoot = $$('.app .main .timers');
+Object.keys(clocks).forEach(function (name) {
+  var clock = clocks[name];
+  clock.render();
+  timersRoot.appendChild(clock.el);
+})
+
 timer.on('change:elapsed', function () {
   // TODO: My math could be better, here
-  var time = workout.duration - timer.elapsed;
+  var event = workout.currentEvent;
+  if (!event) { return; }
 
-  var minutes = parseInt(time / 60000);
-  var seconds = parseInt((time - (minutes * 60000)) / 1000);
-  var decimal = parseInt(time - (minutes * 60000) - (seconds * 1000));
-
-  var root = $$('.app .main .timer');
-  root.querySelector('.minutes').innerHTML = Utils.zeroPad(minutes, 2);
-  root.querySelector('.seconds').innerHTML = Utils.zeroPad(seconds, 2);
-  root.querySelector('.decimal').innerHTML = Utils.zeroPad(decimal, 3);
+  clocks.elapsed.time = timer.elapsed;
+  clocks.remaining.time = workout.duration - timer.elapsed;
+  clocks.current.set({
+    title: event.type,
+    time: (event.duration * 1000) - (timer.elapsed - event.startElapsed)
+  });
 });
 
 timer.on('change:elapsed', function () {

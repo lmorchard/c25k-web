@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "ampersand-state": "^4.5.6",
+    "ampersand-view": "^8.0.0",
     "es6-promises": "^1.0.10",
     "lodash": "^3.10.0"
   }
