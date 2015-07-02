@@ -26,23 +26,20 @@ var WorkoutBar = module.exports = View.extend({
     if (!parentNode) { return; }
 
     this.el.width = parentNode.offsetWidth;
-    this.el.height = 150; //parentNode.offsetHeight;
+    this.el.height = parentNode.offsetHeight;
 
     var ctx = this.el.getContext('2d');
 
     var widthByDuration = this.el.width / this.workout.duration;
 
     var colors = {
-      'warmup': '#f00',
-      'run': '#0f0',
-      'walk': '#00f',
-      'cooldown': '#ff0'
+      'warmup': '#ffa500',
+      'run': '#adff2f',
+      'walk': '#008000',
+      'cooldown': '#ffa500'
     };
 
-    //ctx.fillStyle = '#000';
-    //ctx.fillRect(0, 0, this.el.width, this.el.height);
-
-    var height = 100; //this.el.height;
+    var height = this.el.height;
 
     function drawEventBar (event, barHeight) {
       var startPos = event.startElapsed * widthByDuration;
