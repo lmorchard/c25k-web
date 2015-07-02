@@ -22,7 +22,7 @@ gulp.task('browserify-app', function () {
     .bundle()
     .pipe(source('index.js'))
     .pipe(buffer())
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());
 });

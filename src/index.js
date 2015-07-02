@@ -1,87 +1,53 @@
 var $ = require('./js/bling');
-var State = require('ampersand-state');
+var Utils = require('./js/utils');
 
-var TIMER_INTERVAL = 100;
+var Timer = require('./js/models/Timer');
+var timer = new Timer();
 
-var AppState = State.extend({
-  props: {
-    timerRunning: 'boolean',
-    timeElapsed: 'number',
-    timeLast: 'number'
-  }
-});
+var DATA = require('./data/c25k.json');
+var Workout = require('./js/models/Workout');
+var workout = new Workout(DATA.workouts[0]);
 
-var appState = new AppState();
-
-function resetTimer () {
-  appState.set({
-    timerRunning: false,
-    timeLast: 0,
-    timeElapsed: 0
-  })
-}
-
-function startTimer () {
-  appState.set({
-    timeLast: Date.now(),
-    timerRunning: true
-  });
-  setTimeout(runTimer, TIMER_INTERVAL);
-}
-
-function stopTimer () {
-  appState.timerRunning = false;
-}
-
-function runTimer () {
-  if (!appState.timerRunning) { return; }
-
-  var timeNow = Date.now();
-
-  if (appState.timeLast > 0) {
-    var step = timeNow - appState.timeLast;
-    appState.timeElapsed = appState.timeElapsed + step;
-  }
-
-  appState.timeLast = timeNow;
-
-  setTimeout(runTimer, TIMER_INTERVAL);
-}
-
-appState.on('change:timerRunning', function () {
+timer.on('change:running', function () {
   var appRoot = $$('body .app');
-  if (appState.timerRunning) {
-    appRoot.classList.remove('paused');
-    appRoot.classList.add('playing');
-  } else {
-    appRoot.classList.remove('playing');
-    appRoot.classList.add('paused');
-  }
+  appRoot.classList.remove(timer.running ? 'stopped' : 'running');
+  appRoot.classList.add(timer.running ? 'running' : 'stopped');
 });
 
-function zeroPad (value, length) {
-  var padded = ('' + '000' + value);
-  return padded.substr(padded.length - length);
-}
+timer.on('change:elapsed', function () {
+  // TODO: My math could be better, here
+  var time = workout.duration - timer.elapsed;
 
-appState.on('change:timeElapsed', function () {
+  var minutes = parseInt(time / 60000);
+  var seconds = parseInt((time - (minutes * 60000)) / 1000);
+  var decimal = parseInt(time - (minutes * 60000) - (seconds * 1000));
 
-  var elapsed = appState.timeElapsed;
+  var root = $$('.app .main .timer');
+  root.querySelector('.minutes').innerHTML = Utils.zeroPad(minutes, 2);
+  root.querySelector('.seconds').innerHTML = Utils.zeroPad(seconds, 2);
+  root.querySelector('.decimal').innerHTML = Utils.zeroPad(decimal, 3);
+});
 
-  var minutes = parseInt(elapsed / 60000);
-  var seconds = parseInt((elapsed - (minutes * 60000)) / 1000);
-  var decimal = parseInt(elapsed - (minutes * 60000) - (seconds * 1000));
+timer.on('change:elapsed', function () {
+  workout.elapsed = timer.elapsed;
+})
 
-  var timer = $$('.app .main .timer');
-
-  timer.querySelector('.minutes').innerHTML = zeroPad(minutes, 2);
-  timer.querySelector('.seconds').innerHTML = zeroPad(seconds, 2);
-  timer.querySelector('.decimal').innerHTML = zeroPad(decimal, 3);
-
+workout.on('change:currentEvent', function () {
+  $$('.app .main .event').innerHTML = workout.currentEvent.type;
 });
 
 $('.app footer button.playpause').on('click', function (ev) {
-  return appState.timerRunning ? stopTimer() : startTimer();
+  timer.toggle();
 });
 
-resetTimer();
+$('.app footer button.previous').on('click', function (ev) {
+  var event = workout.previousEvent;
+  if (event) { timer.elapsed = event.startElapsed; }
+});
+
+$('.app footer button.next').on('click', function (ev) {
+  var event = workout.nextEvent;
+  if (event) { timer.elapsed = event.startElapsed; }
+});
+
+timer.reset();

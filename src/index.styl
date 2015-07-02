@@ -42,6 +42,13 @@ body {
   align-content: stretch;
 }
 
+.app .main .event {
+  display: block;
+  font-size: 3em;
+  text-align: center;
+  font-family: monospace;
+}
+
 .app .main .timer {
   display: block;
   font-size: 3em;
@@ -54,12 +61,10 @@ body {
   font-size: 2em;
 }
 
-.app.playing footer button.playpause {
-  content: "pause";
+.app.running footer button.playpause {
   color: red;
 }
 
-.app.paused footer button.playpause {
-  content: "play";
+.app.stopped footer button.playpause {
   color: green;
 }
