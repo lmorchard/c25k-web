@@ -42,9 +42,10 @@ var WorkoutBar = module.exports = View.extend({
     var height = this.el.height;
 
     function drawEventBar (event, barHeight) {
-      var startPos = event.startElapsed * widthByDuration;
-      var width = event.endElapsed * widthByDuration - startPos;
-      ctx.fillRect(startPos, 0, width, barHeight);
+      var startX = event.startElapsed * widthByDuration;
+      var width = event.endElapsed * widthByDuration - startX;
+      var startY = (height - barHeight) / 2;
+      ctx.fillRect(startX, startY, width, barHeight);
     }
 
     this.workout.events.forEach(function (event) {
