@@ -8,6 +8,12 @@ var DATA = require('./data/c25k.json');
 var Workout = require('./js/models/Workout');
 var workout = new Workout(DATA.workouts[0]);
 
+
+var AudioCues = require('./js/views/AudioCues');
+var audioCues = new AudioCues({workout: workout});
+audioCues.render();
+$$('.app .main').appendChild(audioCues.el);
+
 var WorkoutBar = require('./js/views/WorkoutBar');
 var workoutBar = new WorkoutBar({timer: timer, workout: workout});
 workoutBar.render();
@@ -31,7 +37,10 @@ Object.keys(clocks).forEach(function (name) {
 })
 
 timer.on('change:elapsed', function () {
-  // TODO: My math could be better, here
+  workout.elapsed = timer.elapsed;
+})
+
+timer.on('change:elapsed', function () {
   var event = workout.currentEvent;
   if (!event) { return; }
 
@@ -48,10 +57,6 @@ timer.on('change:running', function () {
   appRoot.classList.remove(timer.running ? 'stopped' : 'running');
   appRoot.classList.add(timer.running ? 'running' : 'stopped');
 });
-
-timer.on('change:elapsed', function () {
-  workout.elapsed = timer.elapsed;
-})
 
 $('.app footer button.playpause').on('click', function (ev) {
   timer.toggle();

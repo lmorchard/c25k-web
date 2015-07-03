@@ -35,7 +35,11 @@ gulp.task('stylus', function () {
 });
 
 gulp.task('assets', function () {
-  return gulp.src(['src/manifest.webapp', './src/**/*.html'])
+  return gulp.src([
+      './src/manifest.webapp',
+      './src/**/*.html',
+      './src/**/*.mp3'
+    ])
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());
 });

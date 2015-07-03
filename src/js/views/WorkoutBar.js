@@ -1,4 +1,4 @@
-var View = require('ampersand-view')
+var View = require('ampersand-view');
 var Utils = require('../utils');
 
 var WorkoutBar = module.exports = View.extend({
@@ -33,10 +33,10 @@ var WorkoutBar = module.exports = View.extend({
     var widthByDuration = this.el.width / this.workout.duration;
 
     var colors = {
-      'warmup': '#ffa500',
-      'run': '#adff2f',
-      'walk': '#008000',
-      'cooldown': '#ffa500'
+      'warmup': '#2F4F4F',
+      'run': '#006400',
+      'walk': '#228B22',
+      'cooldown': '#2F4F4F'
     };
 
     var height = this.el.height;
