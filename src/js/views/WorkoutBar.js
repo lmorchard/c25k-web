@@ -53,7 +53,7 @@ var WorkoutBar = module.exports = View.extend({
 
     var currentEvent = this.workout.currentEvent;
     if (currentEvent) {
-      ctx.fillStyle = "rgba(255, 255, 255, 0.25)";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
       drawEventBar(currentEvent, height);
     }
 
