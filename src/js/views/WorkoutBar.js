@@ -3,8 +3,6 @@ var Utils = require('../utils');
 
 var WorkoutBar = module.exports = View.extend({
 
-  autoRender: true,
-
   props: {
     timer: 'object',
     workout: 'object'
