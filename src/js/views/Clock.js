@@ -8,45 +8,48 @@ module.exports = View.extend({
   props: {
     type: 'string',
     title: 'string',
-    time: 'number'
+    time: 'number',
+    countdown: 'boolean'
   },
 
   derived: {
-    minutes: {
+    // HACK: Only count up or down in whole seconds, round differently
+    // depending on direction.
+    roundedSeconds: {
       deps: ['time'],
       fn: function () {
-        return Utils.zeroPad(this.time / 60000, 2);
+        return this.countdown ?
+          Math.ceil(this.time / 1000) :
+          Math.floor(this.time / 1000);
+      }
+    },
+    minutes: {
+      deps: ['roundedSeconds'],
+      fn: function () {
+        return Utils.zeroPad(this.roundedSeconds / 60, 2);
       }
     },
     seconds: {
-      deps: ['time'],
+      deps: ['roundedSeconds'],
       fn: function () {
-        return Utils.zeroPad((this.time - (this.minutes * 60000)) / 1000, 2);
-      }
-    },
-    decimal: {
-      deps: ['time'],
-      fn: function () {
-        return Utils.zeroPad(this.time - (this.minutes * 60000) - (this.seconds * 1000), 3);
+        return Utils.zeroPad(this.roundedSeconds - (this.minutes * 60), 2);
       }
     }
   },
 
   template: [
-    '<span class="timer">',
+    '<div class="timer">',
     '<span class="title" data-hook="title"></span>',
     ' <span class="minutes" data-hook="minutes">00</span>',
     ':<span class="seconds" data-hook="seconds">00</span>',
-    // '.<span class="decimal" data-hook="decimal">000</span>',
-    '</span>'
+    '</div>'
   ].join(''),
 
   bindings: {
     title: '[data-hook=title]',
     time: '[data-hook=time]',
     minutes: '[data-hook=minutes]',
-    seconds: '[data-hook=seconds]',
-    decimal: '[data-hook=decimal]'
+    seconds: '[data-hook=seconds]'
   },
 
   render: function () {

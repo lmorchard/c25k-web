@@ -8,7 +8,6 @@ var DATA = require('./data/c25k.json');
 var Workout = require('./js/models/Workout');
 var workout = new Workout(DATA.workouts[0]);
 
-
 var AudioCues = require('./js/views/AudioCues');
 var audioCues = new AudioCues({workout: workout});
 audioCues.render();
@@ -24,9 +23,24 @@ $$('.app .main .workout').appendChild(workoutBar.el);
 var Clock = require('./js/views/Clock');
 
 var clocks = {
-  elapsed: new Clock({ type: 'elapsed', title: 'Elapsed', time: 0 }),
-  current: new Clock({ type: 'current', title: '', time: 0 }),
-  remaining: new Clock({ type: 'remaining', title: 'Remaining', time: 0 })
+  elapsed: new Clock({
+    type: 'elapsed',
+    title: 'Elapsed',
+    countdown: false,
+    time: 0
+  }),
+  current: new Clock({
+    type: 'current',
+    title: '',
+    countdown: true,
+    time: 0
+  }),
+  remaining: new Clock({
+    type: 'remaining',
+    title: 'Remaining',
+    countdown: true,
+    time: 0
+  })
 };
 
 var timersRoot = $$('.app .main .timers');
