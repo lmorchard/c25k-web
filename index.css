@@ -29,39 +29,54 @@ body {
   color: #111;
   text-align: center;
 }
+.app .main .workout {
+  display: block;
+  width: 100%;
+  height: 100px;
+}
+.app .main .timers {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  align-content: stretch;
+}
+.app .main .timer {
+  display: block;
+  flex-grow: 1;
+  font-size: 1.25em;
+  text-align: center;
+  font-family: monospace;
+  border: 1px solid #fff;
+  border-radius: 0.5em;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+}
+.app .main .timer .title {
+  display: block;
+}
+.app .main .timer.current {
+  font-size: 2.5em;
+  width: 4.5em;
+}
 .app footer {
   width: 100%;
   height: 75px;
   margin: 0;
   padding: 0;
-  background-color: #eee;
+/*background-color: #eee;*/
   color: #111;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   align-content: stretch;
 }
-.app .main .workout {
-  display: block;
-  width: 100%;
-  height: 100px;
-}
-.app .main .timer {
-  display: block;
-  font-size: 1.5em;
-  margin: 1em;
-  text-align: center;
-  font-family: monospace;
-}
-.app .main .timer.current {
-  font-size: 3em;
-}
-.app .main .timer.current .title {
-  display: block;
-}
 .app footer button {
   flex-grow: 1;
   font-size: 2em;
+  border: 1px solid #000;
+  border-radius: 0.25em;
 }
 .app.running footer button.playpause {
   color: #f00;
