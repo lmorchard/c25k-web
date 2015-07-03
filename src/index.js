@@ -6,7 +6,9 @@ var timer = new Timer();
 
 var DATA = require('./data/c25k.json');
 var Workout = require('./js/models/Workout');
-var workout = new Workout(DATA.workouts[0]);
+var workout = new Workout(DATA.workouts[9]);
+
+$$('.app .main .workoutTitle').innerHTML = workout.title;
 
 var AudioCues = require('./js/views/AudioCues');
 var audioCues = new AudioCues({workout: workout});
