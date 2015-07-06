@@ -3,15 +3,9 @@ var Utils = require('../utils');
 
 var WorkoutBar = module.exports = View.extend({
 
-  props: {
-    timer: 'object',
-    workout: 'object'
-  },
-
   initialize: function (options) {
     View.prototype.initialize.apply(this, arguments);
-    this.timer.on('change', this.render.bind(this));
-    this.workout.on('change', this.render.bind(this));
+    this.model.on('change:elapsed', this.render.bind(this));
   },
 
   render: function () {
@@ -28,7 +22,7 @@ var WorkoutBar = module.exports = View.extend({
 
     var ctx = this.el.getContext('2d');
 
-    var widthByDuration = this.el.width / this.workout.duration;
+    var widthByDuration = this.el.width / this.model.duration;
 
     var colors = {
       'warmup': '#2F4F4F',
@@ -46,18 +40,18 @@ var WorkoutBar = module.exports = View.extend({
       ctx.fillRect(startX, startY, width, barHeight);
     }
 
-    this.workout.events.forEach(function (event) {
-      ctx.fillStyle = colors[event.type];
-      drawEventBar(event, height * 0.75);
-    });
-
-    var currentEvent = this.workout.currentEvent;
+    var currentEvent = this.model.currentEvent;
     if (currentEvent) {
-      ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
       drawEventBar(currentEvent, height);
     }
 
-    var elapsedPos = this.timer.elapsed * widthByDuration;
+    this.model.events.forEach(function (event) {
+      ctx.fillStyle = colors[event.type];
+      drawEventBar(event, height * 0.66);
+    });
+
+    var elapsedPos = this.model.elapsed * widthByDuration;
     ctx.fillStyle = "#fff";
     ctx.fillRect(elapsedPos, 0, 1, height);
 

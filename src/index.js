@@ -16,7 +16,7 @@ audioCues.render();
 $$('.app .main').appendChild(audioCues.el);
 
 var WorkoutBar = require('./js/views/WorkoutBar');
-var workoutBar = new WorkoutBar({timer: timer, workout: workout});
+var workoutBar = new WorkoutBar({ model: workout });
 workoutBar.render();
 $$('.app .main .workout').appendChild(workoutBar.el);
 
@@ -53,7 +53,9 @@ Object.keys(clocks).forEach(function (name) {
 })
 
 timer.on('change:elapsed', function () {
-  workout.elapsed = timer.elapsed;
+  if (timer.running) {
+    workout.elapsed = timer.elapsed;
+  }
 })
 
 timer.on('change:elapsed', function () {
