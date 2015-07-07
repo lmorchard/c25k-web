@@ -6,68 +6,27 @@ var timer = new Timer();
 
 var DATA = require('./data/c25k.json');
 var Workout = require('./js/models/Workout');
-var workout = new Workout(DATA.workouts[9]);
+var workout = new Workout(DATA.workouts[12]);
 
 $$('.app .main .workoutTitle').innerHTML = workout.title;
 
 var AudioCues = require('./js/views/AudioCues');
-var audioCues = new AudioCues({workout: workout});
-audioCues.render();
+var audioCues = new AudioCues({ model: workout });
 $$('.app .main').appendChild(audioCues.el);
 
 var WorkoutBar = require('./js/views/WorkoutBar');
 var workoutBar = new WorkoutBar({ model: workout });
-workoutBar.render();
 $$('.app .main .workout').appendChild(workoutBar.el);
+workoutBar.render();
 
-// TODO: Wrap the set of clocks up in its own view component?
-
-var Clock = require('./js/views/Clock');
-
-var clocks = {
-  elapsed: new Clock({
-    type: 'elapsed',
-    title: 'Elapsed',
-    countdown: false,
-    time: 0
-  }),
-  current: new Clock({
-    type: 'current',
-    title: '',
-    countdown: true,
-    time: 0
-  }),
-  remaining: new Clock({
-    type: 'remaining',
-    title: 'Remaining',
-    countdown: true,
-    time: 0
-  })
-};
-
-var timersRoot = $$('.app .main .timers');
-Object.keys(clocks).forEach(function (name) {
-  var clock = clocks[name];
-  clock.render();
-  timersRoot.appendChild(clock.el);
-})
+var ClockBar = require('./js/views/ClockBar');
+var clockBar = new ClockBar({ model: workout });
+$$('.app .main').appendChild(clockBar.el);
 
 timer.on('change:elapsed', function () {
   if (timer.running) {
     workout.elapsed = timer.elapsed;
   }
-})
-
-timer.on('change:elapsed', function () {
-  var event = workout.currentEvent;
-  if (!event) { return; }
-
-  clocks.elapsed.time = timer.elapsed;
-  clocks.remaining.time = workout.duration - timer.elapsed;
-  clocks.current.set({
-    title: event.type,
-    time: (event.duration * 1000) - (timer.elapsed - event.startElapsed)
-  });
 });
 
 timer.on('change:running', function () {

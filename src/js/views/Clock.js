@@ -52,6 +52,12 @@ module.exports = View.extend({
     seconds: '[data-hook=seconds]'
   },
 
+  initialize: function (options) {
+    View.prototype.initialize.apply(this, arguments);
+    this.parent.model.on('change:elapsed', options.updateTime.bind(this));
+    this.render();
+  },
+
   render: function () {
     this.renderWithTemplate(this);
     this.el.classList.add(this.type);

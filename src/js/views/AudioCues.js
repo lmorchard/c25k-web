@@ -3,33 +3,25 @@ var View = require('ampersand-view');
 module.exports = View.extend({
 
   props: {
-    workout: 'object'
+    model: 'object'
   },
 
   initialize: function (options) {
     View.prototype.initialize.apply(this, arguments);
-    this.workout.on('change:currentEvent', this.render.bind(this));
+    this.render();
+    this.model.on('change:currentEvent', this.render.bind(this));
   },
 
   render: function () {
-
-    console.log('CUE', this.workout.currentEvent);
 
     if (!this.el) {
       this.el = document.createElement('audio');
       this.el.mozAudioChannelType = 'notification';
       this.el.setAttribute('preload', 'auto');
       this.el.style.display = 'none';
-
-      this.source = document.createElement('source');
-      this.source.setAttribute('src', '');
-      this.source.setAttribute('type', '');
-      this.el.appendChild(this.source);
     }
 
-    var parentNode = this.el.parentNode;
-    if (!parentNode) { return; }
-
+    // TODO: Localization
     var clips = {
       warmup: 'audio/en-US/warmup.mp3',
       run: 'audio/en-US/run.mp3',
@@ -37,46 +29,41 @@ module.exports = View.extend({
       cooldown: 'audio/en-US/cooldown.mp3'
     };
 
-    var currentEvent = this.workout.currentEvent;
-    if (currentEvent) {
-      var clip = clips[currentEvent.type];
-      if (clip) {
-        console.log("TRYING TO PLAY", clip);
-        //this.source.src = clip;
-        //this.source.type = 'audio/mp3';
-        this.el.src = clip;
-        this.el.play();
+    var parentNode = this.el.parentNode;
+    if (!parentNode) { return; }
 
-        function notify () {
-          var notification = new Notification(
-            'start '+ currentEvent.type,
-            {
-              tag: 'c25k-web-event',
-              vibrate: [100, 50, 100, 50, 100],
-              mozbehavior: {
-                noscreen: true,
-                showOnlyOnce: true
-              }
-            }
-          );
-        }
-        
-        if ('Notification' in window) {
-          if (Notification.permission === 'granted') {
-            notify();
-          } else {
-            Notification.requestPermission(notify);
-          }
-        }
+    var currentEvent = this.model.currentEvent;
+    if (!currentEvent) { return; }
 
-        /*
-        if (window.navigator.vibrate) {
-          window.navigator.vibrate([100, 50, 100, 50, 100]);
-        }
-        */
+    var clip = clips[currentEvent.type];
+    if (!clip) { return; }
+
+    this.el.src = clip;
+    this.el.play();
+
+    if ('Notification' in window) {
+      if (Notification.permission === 'granted') {
+        this._notify();
+      } else {
+        Notification.requestPermission(this._notify.bind(this));
       }
     }
 
+  },
+
+  _notify: function () {
+    var currentEvent = this.model.currentEvent;
+    var notification = new Notification(
+      'c25k: start ' + currentEvent.type,
+      {
+        tag: 'c25k-web-event',
+        vibrate: [100, 50, 100, 50, 100],
+        mozbehavior: {
+          noscreen: true,
+          showOnlyOnce: true
+        }
+      }
+    );
   }
 
 });

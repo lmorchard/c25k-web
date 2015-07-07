@@ -6,6 +6,7 @@ var WorkoutBar = module.exports = View.extend({
   initialize: function (options) {
     View.prototype.initialize.apply(this, arguments);
     this.model.on('change:elapsed', this.render.bind(this));
+    this.render();
   },
 
   render: function () {
@@ -26,8 +27,8 @@ var WorkoutBar = module.exports = View.extend({
 
     var colors = {
       'warmup': '#2F4F4F',
-      'run': '#006400',
-      'walk': '#228B22',
+      'walk': '#006400',
+      'run': '#228B22',
       'cooldown': '#2F4F4F'
     };
 
