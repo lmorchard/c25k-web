@@ -1,5 +1,6 @@
 var State = require('ampersand-state');
 
+// TODO: Make configurable? Is that even necessary?
 var TIMER_INTERVAL = 100;
 
 module.exports = State.extend({

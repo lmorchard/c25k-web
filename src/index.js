@@ -1,12 +1,32 @@
 var $ = require('./js/bling');
 var Utils = require('./js/utils');
 
+var DATA = require('./data/c25k.json');
+
+var Collection = require('ampersand-collection');
+var lodashMixin = require('ampersand-collection-lodash-mixin');
+
+var WorkoutCollection = Collection.extend(lodashMixin, {
+  model: require('./js/models/Workout'),
+  mainIndex: 'title'
+});
+
+var workoutCollection = new WorkoutCollection(DATA.workouts);
+
+if (true) {
+
+var WorkoutList = require('./js/views/WorkoutList');
+var workoutList = new WorkoutList({ collection: workoutCollection });
+$$('.app .workoutList').appendChild(workoutList.el);
+
+}
+
+if (true) {
+
+var workout = workoutCollection.at(13);
+
 var Timer = require('./js/models/Timer');
 var timer = new Timer();
-
-var DATA = require('./data/c25k.json');
-var Workout = require('./js/models/Workout');
-var workout = new Workout(DATA.workouts[12]);
 
 $$('.app .main .workoutTitle').innerHTML = workout.title;
 
@@ -50,3 +70,5 @@ $('.app footer button.next').on('click', function (ev) {
 });
 
 timer.reset();
+
+}

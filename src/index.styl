@@ -29,6 +29,36 @@ body {
   text-align: center;
 }
 
+.app .workoutList { }
+
+.app .workoutList ul.workouts {
+  margin: 1em; padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.app .workoutList ul.workouts li.workout {
+  margin: 0 0 1em 0; padding: 0;
+}
+
+.app .workoutList ul.workouts li.workout .title {
+  display: block;
+  text-align: center;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
+.app .workoutList ul.workouts li.workout .workoutBar {
+  display: block;
+  width: 85%;
+  height: 25px;
+  margin: 0.25em auto 0.25em auto;
+}
+
+.app .workoutList ul.workouts li.workout .workoutBar canvas {
+}
+
 .app .main .workoutTitle {
   margin: 0;
   padding: 0;

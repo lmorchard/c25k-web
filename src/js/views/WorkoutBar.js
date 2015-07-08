@@ -4,7 +4,10 @@ var Utils = require('../utils');
 var WorkoutBar = module.exports = View.extend({
 
   initialize: function (options) {
-    View.prototype.initialize.apply(this, arguments);
+    View.prototype.initialize.call(this, options);
+    if (this.parent) {
+      this.model = this.parent.model;
+    }
     this.model.on('change:elapsed', this.render.bind(this));
     this.render();
   },
@@ -18,8 +21,14 @@ var WorkoutBar = module.exports = View.extend({
     var parentNode = this.el.parentNode;
     if (!parentNode) { return; }
 
-    this.el.width = parentNode.offsetWidth;
-    this.el.height = parentNode.offsetHeight;
+    // HACK: Defer rendering until there's a parent node size available
+    // This seems like a really terrible way to do it.
+    if (!parentNode.clientWidth || !parent.clientHeight) {
+      setTimeout(this.render.bind(this), 10);
+    }
+
+    this.el.width = parentNode.clientWidth;
+    this.el.height = parentNode.clientHeight;
 
     var ctx = this.el.getContext('2d');
 
