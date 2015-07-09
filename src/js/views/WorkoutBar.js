@@ -1,5 +1,6 @@
 var View = require('ampersand-view');
 var Utils = require('../utils');
+var throttle = require('lodash.throttle');
 
 var WorkoutBar = module.exports = View.extend({
 
@@ -7,6 +8,16 @@ var WorkoutBar = module.exports = View.extend({
     if (this.parent) { this.model = this.parent.model; }
     this.listenTo(this.model, 'change:elapsedSkip', this.render);
     this.listenTo(this.model, 'change:currentEvent', this.render);
+
+    this.resizeHandler = throttle(this.render.bind(this), 66);
+    window.addEventListener('resize', this.resizeHandler, false);
+    window.addEventListener('orientationchange', this.resizeHandler, false);
+  },
+
+  remove: function () {
+    window.removeEventListener('resize', this.resizeHandler);
+    window.removeEventListener('orientationchange', this.resizeHandler);
+    View.prototype.remove.call(this);
   },
 
   render: function () {

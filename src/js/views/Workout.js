@@ -72,12 +72,13 @@ module.exports = View.extend({
       cl.add(this.model.running ? 'running' : 'stopped');
     });
 
-    this.listenTo(this, 'remove', function () {
-      // Stop the timer ticking when this view is removed.
-      this.model.stop();
-    });
-
     return this;
+  },
+
+  remove: function () {
+    // Stop the timer ticking when this view is removed.
+    this.model.stop();
+    View.prototype.remove.call(this);
   }
 
 });
