@@ -21,16 +21,22 @@ gulp deploy # updates gh-pages branch
 TODO
 ----
 
-- [ ]  Better voice samples. (My voice is terrible for this.)
+- [ ] Save elapsed progress for each workout
 
-- [ ]  Localization - both in text and in sound cues.
+- [ ] Help / about view explaining what this thing is
 
-- [ ]  More progress cues - eg. time remaining, runs remaining, halfway
+- [ ] Left/right swipe on workout view to navigate next/prev workout
 
-- [ ]  Save elapsed progress for each workout
+- [ ] Long-press on pause/play to reset workout to beginning
 
-- [ ]  Submit to Mozilla Marketplace someday?
+- [ ] Better voice samples. (My voice is terrible for this.)
 
-- [ ]  Social progress sharing stuff
+- [ ] Localization - both in text and in sound cues.
 
-- [ ]  GPS tracking? (probably should be out of scope)
+- [ ] More progress cues - eg. time remaining, runs remaining, halfway
+
+- [ ] Submit to Mozilla Marketplace someday?
+
+- [ ] Social progress sharing stuff
+
+- [ ] GPS tracking? (probably should be out of scope)

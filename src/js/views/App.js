@@ -5,7 +5,7 @@ var ViewSwitcher = require('ampersand-view-switcher');
 module.exports = View.extend({
 
   template: [
-    '<section class="app stopped">',
+    '<section class="app home">',
     '  <h1 class="title">',
     '    <button class="back">&lt;</button>',
     '    <span data-hook="title">c25k web</span>',
