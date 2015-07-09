@@ -17,3 +17,20 @@ gulp
 # open http://localhost:3001
 gulp deploy # updates gh-pages branch
 ```
+
+TODO
+----
+
+- [ ]  Better voice samples. (My voice is terrible for this.)
+
+- [ ]  Localization - both in text and in sound cues.
+
+- [ ]  More progress cues - eg. time remaining, runs remaining, halfway
+
+- [ ]  Save elapsed progress for each workout
+
+- [ ]  Submit to Mozilla Marketplace someday?
+
+- [ ]  Social progress sharing stuff
+
+- [ ]  GPS tracking? (probably should be out of scope)
