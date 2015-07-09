@@ -17,12 +17,16 @@ gulp.task('build', [
 ]);
 
 gulp.task('browserify-app', function () {
-  return browserify({ entries: ['./src/index.js'], debug: true })
+  return browserify({
+      entries: ['./src/index.js'],
+      debug: true,
+      fullPaths: true
+    })
     .transform(babelify)
     .bundle()
     .pipe(source('index.js'))
     .pipe(buffer())
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('./dist'))
     .pipe(connect.reload());
 });

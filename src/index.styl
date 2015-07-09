@@ -11,126 +11,168 @@ body {
 
 .app {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: stretch;
-  align-content: stretch;
-}
 
-.app h1 {
-  height: 50px;
-  line-height: 50px;
-  margin: 0;
-  padding: 0;
-  background-color: #888;
-  color: #000;
-  text-align: center;
-}
+  h1 {
+    display: block;
+    position: fixed;
+    left: 0; top: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+    background-color: #888;
+    color: #000;
+    text-align: center;
 
-.app .workoutList { }
+    button.back {
+      display: block;
+      position: absolute;
+      border: none;
+      border-right: 1px solid #000;
+      background-color: #888;
+      left: 0; top: 0;
+      width: 50px; height: 50px;
+      font-size: 1em;
+    }
 
-.app .workoutList ul.workouts {
-  margin: 1em; padding: 0;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-}
+  }
 
-.app .workoutList ul.workouts li.workout {
-  margin: 0 0 1em 0; padding: 0;
-}
+  section.main {
+    height: 100%;
+    margin-top: 50px;
 
-.app .workoutList ul.workouts li.workout .title {
-  display: block;
-  text-align: center;
-  font-family: monospace;
-  font-size: 1.5em;
-}
+    .workoutList {
 
-.app .workoutList ul.workouts li.workout .workoutBar {
-  display: block;
-  width: 85%;
-  height: 25px;
-  margin: 0.25em auto 0.25em auto;
-}
+      ul.workouts {
+        margin: 1em; padding: 0;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
 
-.app .workoutList ul.workouts li.workout .workoutBar canvas {
-}
+        li.workout {
+          margin: 1em 0 0 0; padding: 0;
 
-.app .main .workoutTitle {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  font-family: monospace;
-  font-size: 2em;
-}
+          .title {
+            display: block;
+            text-align: center;
+            font-family: monospace;
+            font-size: 1.5em;
+          }
 
-.app .main .workout {
-  display: block;
-  width: 100%;
-  height: 100px;
-  margin: 2em 0;
-}
+          .workoutBar {
+            display: block;
+            width: 85%;
+            height: 25px;
+            margin: 0.25em auto 0.25em auto;
+          }
 
-.app .main .timers {
-  width: 100%;
-  margin: 2em 0;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  align-content: flex-start;
-  justify-content: space-around;
-}
+        }
 
-.app .main .timer {
-  display: block;
-  flex-grow: 1;
-  font-size: 1.25em;
-  text-align: center;
-  font-family: monospace;
-  border: 1px solid #fff;
-  // border-radius: 0.5em;
-  margin: 0 0.5em;
-  padding: 0.5em 0.25em;
-  text-align: center;
-}
+      }
 
-.app .main .timer .title {
-  display: block;
-  font-size: 0.75em;
-}
+    }
 
-.app .main .timer.current {
-  font-size: 2.5em;
-}
+    .workoutView {
 
-.app footer {
-  width: 100%;
-  height: 50px;
-  margin: 0;
-  padding: 0;
-  background-color: #666;
-  color: #c000;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  align-content: stretch;
-}
+      height: 100%;
+      margin-bottom: 50px;
 
-.app footer button {
-  background-color: #666;
-  flex-grow: 1;
-  font-size: 2em;
-  border: 1px solid #000;
-  border-radius: 0;
-}
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
 
-.app.running footer button.playpause {
-  color: #e33;
-}
+      h2 {
+        margin: 0.5em 0 0 0;
+        padding: 0;
+        text-align: center;
+        font-family: monospace;
+        font-size: 2em;
+      }
 
-.app.stopped footer button.playpause {
-  color: #3e3;
+      section.bar {
+        width: 100%;
+        height: 100px;
+      }
+
+      section.timers {
+        width: 100%;
+        margin: 2em 0;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        align-content: flex-start;
+        justify-content: space-around;
+
+        .timer {
+          display: block;
+          flex-grow: 1;
+          font-size: 1.25em;
+          text-align: center;
+          font-family: monospace;
+          border: 1px solid #fff;
+          // border-radius: 0.5em;
+          margin: 0 0.5em;
+          padding: 0.5em 0.25em;
+          text-align: center;
+
+          .title {
+            display: block;
+            font-size: 0.75em;
+          }
+
+        }
+
+        .timer.current {
+          font-size: 2.5em;
+        }
+
+      }
+
+      audio { display: none }
+
+      footer {
+        display: block;
+        position: fixed;
+        left: 0; bottom: 0;
+        width: 100%;
+        height: 50px;
+
+        margin: 0;
+        padding: 0;
+        background-color: #666;
+        color: #c000;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        align-content: stretch;
+
+        button {
+          background-color: #666;
+          flex-grow: 1;
+          font-size: 2em;
+          border: 1px solid #000;
+          border-radius: 0;
+        }
+
+      }
+
+    }
+
+    .workoutView.running {
+      footer button.playpause {
+        color: #e33;
+      }
+    }
+
+    .workoutView.stopped {
+      footer button.playpause {
+        color: #3e3;
+      }
+    }
+
+  }
+
 }

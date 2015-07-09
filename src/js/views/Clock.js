@@ -53,9 +53,7 @@ module.exports = View.extend({
   },
 
   initialize: function (options) {
-    View.prototype.initialize.apply(this, arguments);
-    this.parent.model.on('change:elapsed', options.updateTime.bind(this));
-    this.render();
+    this.listenTo(this.parent.model, 'change:elapsed', options.updateTime);
   },
 
   render: function () {

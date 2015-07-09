@@ -3,7 +3,9 @@ var Clock = require('./Clock');
 
 module.exports = View.extend({
 
-  autoRender: true,
+  initialize: function (options) {
+    if (this.parent) { this.model = this.parent.model; }
+  },
 
   template: [
     '<section class="timers">',

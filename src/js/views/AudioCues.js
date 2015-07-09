@@ -7,9 +7,8 @@ module.exports = View.extend({
   },
 
   initialize: function (options) {
-    View.prototype.initialize.apply(this, arguments);
-    this.render();
-    this.model.on('change:currentEvent', this.render.bind(this));
+    if (this.parent) { this.model = this.parent.model; }
+    this.listenTo(this.model, 'change:currentEvent', this.render);
   },
 
   render: function () {

@@ -1,5 +1,7 @@
+var app = require('ampersand-app');
 var View = require('ampersand-view')
 var WorkoutBar = require('./WorkoutBar');
+var WorkoutView = require('./Workout');
 
 module.exports = View.extend({
 
@@ -13,6 +15,16 @@ module.exports = View.extend({
 
   bindings: {
     'model.title': '[data-hook=title]'
+  },
+
+  events: {
+    'click li': 'selectWorkout'
+  },
+
+  selectWorkout: function () {
+    var workoutView = new WorkoutView({ model: this.model });
+    // TODO: Is using a global here really a good idea? Maybe use a router instead?
+    app.view.switcher.set(workoutView);
   },
 
   subviews: {
