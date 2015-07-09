@@ -5,5 +5,14 @@
   "developer": {
     "name": "Les Orchard",
     "url": "http://lmorchard.com"
+  },
+  "type": "privileged",
+  "permissions": {
+    "audio-channel-notification": {
+      "description": "Needed to play audio cues during workout"
+    },
+    "desktop-notification": {
+      "description": "Needed to display cues during workout"
+    }
   }
 }

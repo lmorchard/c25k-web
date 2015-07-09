@@ -4,7 +4,7 @@ body,
   height: 100%;
 }
 body {
-  background-color: #111;
+  background-color: #000;
   color: #eee;
   padding: 0;
   margin: 0;
@@ -13,74 +13,156 @@ body {
 }
 .app {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: stretch;
-  align-content: stretch;
 }
 .app h1 {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
   height: 50px;
   line-height: 50px;
   margin: 0;
   padding: 0;
-  background-color: #eee;
-  color: #111;
+  background-color: #888;
+  color: #000;
   text-align: center;
 }
-.app .main .workout {
+.app h1 button.back {
   display: block;
+  position: absolute;
+  border: none;
+  border-radius: 0;
+  border-right: 1px solid #000;
+  background: #888;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 1em;
+}
+.app.home button.back {
+  display: none;
+}
+.app section.main {
+  height: 100%;
+  margin-top: 50px;
+}
+.app section.main .workoutList ul.workouts {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+.app section.main .workoutList ul.workouts li.workout {
+  cursor: pointer;
+  min-height: 50px;
+  margin: 1em 0 0 0;
+  padding: 0 0 1em 0;
+  border-bottom: 1px solid #666;
+}
+.app section.main .workoutList ul.workouts li.workout .title {
+  display: block;
+  text-align: center;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+.app section.main .workoutList ul.workouts li.workout .workoutBar {
+  display: block;
+  width: 85%;
+  height: 25px;
+  margin: 0.25em auto 0.25em auto;
+}
+.app section.main .workoutView {
+  height: 100%;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.app section.main .workoutView h2 {
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  text-align: center;
+  font-family: monospace;
+  font-size: 2em;
+}
+.app section.main .workoutView section.bar {
   width: 100%;
   height: 100px;
 }
-.app .main .timers {
+.app section.main .workoutView section.timers {
   width: 100%;
+  margin: 2em 0;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  align-content: stretch;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: space-around;
 }
-.app .main .timer {
+.app section.main .workoutView section.timers .timer {
   display: block;
   flex-grow: 1;
   font-size: 1.25em;
   text-align: center;
   font-family: monospace;
   border: 1px solid #fff;
-  border-radius: 0.5em;
-  margin: 1em;
-  padding: 1em;
+  margin: 0 0.5em;
+  padding: 0.5em 0.25em;
   text-align: center;
 }
-.app .main .timer .title {
+.app section.main .workoutView section.timers .timer .title {
   display: block;
+  font-size: 0.75em;
 }
-.app .main .timer.current {
+.app section.main .workoutView section.timers .timer.current {
   font-size: 2.5em;
-  width: 4.5em;
 }
-.app footer {
+.app section.main .workoutView audio {
+  display: none;
+}
+.app section.main .workoutView footer {
+  display: block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  height: 75px;
+  height: 50px;
   margin: 0;
   padding: 0;
-/*background-color: #eee;*/
-  color: #111;
+  background-color: #666;
+  color: rgba(204,0,0,0);
   display: flex;
   flex-direction: row;
   align-items: stretch;
   align-content: stretch;
 }
-.app footer button {
+.app section.main .workoutView footer button {
+  background: #666;
   flex-grow: 1;
   font-size: 2em;
   border: 1px solid #000;
-  border-radius: 0.25em;
+  border-radius: 0;
+  whitespace: no-wrap;
 }
-.app.running footer button.playpause {
-  color: #f00;
+.app section.main .workoutView footer button.playpause {
+  width: 50px;
 }
-.app.stopped footer button.playpause {
-  color: #008000;
+.app section.main .workoutView footer button.playpause span {
+  display: none;
+}
+.app section.main .workoutView.running footer button.playpause {
+  color: #622;
+}
+.app section.main .workoutView.running footer button.playpause:before {
+  content: '\2589';
+}
+.app section.main .workoutView.stopped footer button.playpause {
+  color: #262;
+}
+.app section.main .workoutView.stopped footer button.playpause:before {
+  content: '\25ba';
 }
