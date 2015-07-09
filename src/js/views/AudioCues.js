@@ -8,7 +8,7 @@ module.exports = View.extend({
 
   initialize: function (options) {
     if (this.parent) { this.model = this.parent.model; }
-    this.listenTo(this.model, 'change:currentEvent', this.render);
+    this.listenTo(this.model, 'change:currentEvent', this.playCue);
   },
 
   render: function () {
@@ -20,6 +20,18 @@ module.exports = View.extend({
       this.el.style.display = 'none';
     }
 
+  },
+
+  playCue: function () {
+
+    if (!this.model.running) { return; }
+
+    var parentNode = this.el.parentNode;
+    if (!parentNode) { return; }
+
+    var currentEvent = this.model.currentEvent;
+    if (!currentEvent) { return; }
+
     // TODO: Localization
     var clips = {
       warmup: 'audio/en-US/warmup.mp3',
@@ -27,12 +39,6 @@ module.exports = View.extend({
       walk: 'audio/en-US/walk.mp3',
       cooldown: 'audio/en-US/cooldown.mp3'
     };
-
-    var parentNode = this.el.parentNode;
-    if (!parentNode) { return; }
-
-    var currentEvent = this.model.currentEvent;
-    if (!currentEvent) { return; }
 
     var clip = clips[currentEvent.type];
     if (!clip) { return; }

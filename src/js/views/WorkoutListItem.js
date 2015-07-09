@@ -22,9 +22,8 @@ module.exports = View.extend({
   },
 
   selectWorkout: function () {
-    var workoutView = new WorkoutView({ model: this.model });
-    // TODO: Is using a global here really a good idea? Maybe use a router instead?
-    app.view.switcher.set(workoutView);
+    // TODO: Come up with a better index than cid?
+    app.router.navigate('workouts/' + this.model.cid);
   },
 
   subviews: {

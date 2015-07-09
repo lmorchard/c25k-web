@@ -5,10 +5,12 @@ var WorkoutBar = module.exports = View.extend({
 
   initialize: function (options) {
     if (this.parent) { this.model = this.parent.model; }
-    this.listenTo(this.model, 'change:elapsed', this.render);
+    this.listenTo(this.model, 'change:elapsedSkip', this.render);
+    this.listenTo(this.model, 'change:currentEvent', this.render);
   },
 
   render: function () {
+    var self = this;
 
     if (!this.el) {
       this.el = document.createElement('canvas');
@@ -20,7 +22,7 @@ var WorkoutBar = module.exports = View.extend({
     // HACK: Defer rendering until there's a parent node size available
     // This seems like a really terrible way to do it.
     if (!(parentNode.offsetWidth && parentNode.offsetHeight)) {
-      setTimeout(this.render.bind(this), 100);
+      setTimeout(this.render.bind(this), 10);
       return this;
     }
 
@@ -31,6 +33,7 @@ var WorkoutBar = module.exports = View.extend({
 
     var widthByDuration = this.el.width / this.model.duration;
 
+    // TODO: Make this configurable
     var colors = {
       'warmup': '#2F4F4F',
       'walk': '#006400',
@@ -40,28 +43,28 @@ var WorkoutBar = module.exports = View.extend({
 
     var height = this.el.height;
 
-    function drawEventBar (event, barHeight) {
-      var startX = event.startElapsed * widthByDuration;
-      var width = event.endElapsed * widthByDuration - startX;
-      var startY = (height - barHeight) / 2;
-      ctx.fillRect(startX, startY, width, barHeight);
-    }
-
     var currentEvent = this.model.currentEvent;
     if (currentEvent) {
       ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
-      drawEventBar(currentEvent, height);
+      this.drawEventBar(ctx, widthByDuration, currentEvent, height);
     }
 
     this.model.events.forEach(function (event) {
       ctx.fillStyle = colors[event.type];
-      drawEventBar(event, height * 0.66);
+      self.drawEventBar(ctx, widthByDuration, event, height * 0.66);
     });
 
     var elapsedPos = this.model.elapsed * widthByDuration;
     ctx.fillStyle = "#fff";
     ctx.fillRect(elapsedPos, 0, 1, height);
 
+  },
+
+  drawEventBar: function (ctx, widthByDuration, event, barHeight) {
+    var startX = event.startElapsed * widthByDuration;
+    var width = event.endElapsed * widthByDuration - startX;
+    var startY = (this.el.height - barHeight) / 2;
+    ctx.fillRect(startX, startY, width, barHeight);
   }
 
 });

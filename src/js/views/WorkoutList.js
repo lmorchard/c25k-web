@@ -11,6 +11,8 @@ module.exports = View.extend({
 
   render: function (opts) {
 
+    this.viewClass = 'home';
+    
     this.renderWithTemplate(this);
 
     this.renderCollection(this.collection, WorkoutListItem,
