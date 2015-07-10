@@ -6,10 +6,11 @@ var WorkoutBar = module.exports = View.extend({
 
   initialize: function (options) {
     if (this.parent) { this.model = this.parent.model; }
-    this.listenTo(this.model, 'change:elapsedSkip', this.render);
-    this.listenTo(this.model, 'change:currentEvent', this.render);
 
-    this.resizeHandler = throttle(this.render.bind(this), 66);
+    this.listenTo(this.model, 'change:elapsedSkip', this.drawBar);
+    this.listenTo(this.model, 'change:currentEvent', this.drawBar);
+
+    this.resizeHandler = throttle(this.drawBar.bind(this), 66);
     window.addEventListener('resize', this.resizeHandler, false);
     window.addEventListener('orientationchange', this.resizeHandler, false);
   },
@@ -21,19 +22,22 @@ var WorkoutBar = module.exports = View.extend({
   },
 
   render: function () {
-    var self = this;
-
     if (!this.el) {
       this.el = document.createElement('canvas');
     }
+    this.drawBar();
+  },
+
+  drawBar: function () {
+    var self = this;
 
     var parentNode = this.el.parentNode;
     if (!parentNode) { return; }
 
-    // HACK: Defer rendering until there's a parent node size available
+    // HACK: Defer drawing until there's a parent node size available
     // This seems like a really terrible way to do it.
     if (!(parentNode.offsetWidth && parentNode.offsetHeight)) {
-      setTimeout(this.render.bind(this), 10);
+      setTimeout(this.drawBar.bind(this), 10);
       return this;
     }
 
