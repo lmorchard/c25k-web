@@ -14,6 +14,14 @@ body {
 .app {
   width: 100%;
 }
+.app a {
+  color: #ccc;
+  font-weight: bold;
+}
+.app p {
+  font-size: 1.25em;
+  line-height: 1.5em;
+}
 .app h1 {
   display: block;
   position: fixed;
@@ -28,20 +36,30 @@ body {
   color: #000;
   text-align: center;
 }
-.app h1 button.back {
+.app h1 button {
   display: block;
   position: absolute;
   border: none;
   border-radius: 0;
-  border-right: 1px solid #000;
   background: #888;
-  left: 0;
-  top: 0;
   width: 50px;
   height: 50px;
   font-size: 1em;
 }
+.app h1 button.back {
+  left: 0;
+  top: 0;
+  border-right: 1px solid #000;
+}
+.app h1 button.help {
+  right: 0;
+  top: 0;
+  border-left: 1px solid #000;
+}
 .app.home button.back {
+  display: none;
+}
+.app.help button.help {
   display: none;
 }
 .app section.main {
@@ -73,6 +91,9 @@ body {
   width: 85%;
   height: 25px;
   margin: 0.25em auto 0.25em auto;
+}
+.app section.main .helpView {
+  padding: 1em 2em;
 }
 .app section.main .workoutView {
   height: 100%;
@@ -155,13 +176,13 @@ body {
   display: none;
 }
 .app section.main .workoutView.running footer button.playpause {
-  color: #622;
+  color: #f44;
 }
 .app section.main .workoutView.running footer button.playpause:before {
   content: '\2589';
 }
 .app section.main .workoutView.stopped footer button.playpause {
-  color: #262;
+  color: #4f4;
 }
 .app section.main .workoutView.stopped footer button.playpause:before {
   content: '\25ba';
