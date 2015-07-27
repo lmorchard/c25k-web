@@ -5,13 +5,12 @@ var WorkoutView = require('./Workout');
 
 module.exports = View.extend({
 
-  template: [
-    '<li class="workout">',
-    '<span class="title" data-hook="title"></span>',
-    '<span data-hook="pooppoop"><span data-hook="poop"></span></span>',
-    '<div class="workoutBar"><canvas></canvas></div>',
-    '</li>'
-  ].join(''),
+  template: `
+    <li class="workout">
+      <span class="title" data-hook="title"></span>
+      <div class="workoutBar"><canvas></canvas></div>
+    </li>
+  `,
 
   bindings: {
     'model.title': '[data-hook=title]'

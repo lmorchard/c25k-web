@@ -3,16 +3,16 @@ var WorkoutListItem = require('./WorkoutListItem');
 
 module.exports = View.extend({
 
-  template: [
-    '  <section class="workoutList">',
-    '    <ul class="workouts"></ul>',
-    '  </section>'
-  ].join(''),
+  template: `
+    <section class="workoutList">
+      <ul class="workouts"></ul>
+    </section>
+  `,
 
   render: function (opts) {
 
     this.viewClass = 'home';
-    
+
     this.renderWithTemplate(this);
 
     this.renderCollection(this.collection, WorkoutListItem,

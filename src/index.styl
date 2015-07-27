@@ -12,6 +12,16 @@ body {
 .app {
   width: 100%;
 
+  a {
+    color: #ccc;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 1.25em;
+    line-height: 1.5em;
+  }
+
   h1 {
     display: block;
     position: fixed;
@@ -25,21 +35,33 @@ body {
     color: #000;
     text-align: center;
 
-    button.back {
+    button {
       display: block;
       position: absolute;
       border: none;
       border-radius: 0;
-      border-right: 1px solid #000;
       background: #888;
-      left: 0; top: 0;
       width: 50px; height: 50px;
       font-size: 1em;
+    }
+
+    button.back {
+      left: 0; top: 0;
+      border-right: 1px solid #000;
+    }
+
+    button.help {
+      right: 0; top: 0;
+      border-left: 1px solid #000;
     }
 
   }
 
   &.home button.back {
+    display: none;
+  }
+
+  &.help button.help {
     display: none;
   }
 
@@ -80,6 +102,10 @@ body {
 
       }
 
+    }
+
+    .helpView {
+      padding: 1em 2em;
     }
 
     .workoutView {
@@ -176,14 +202,14 @@ body {
 
     .workoutView.running {
       footer {
-        button.playpause { color: #662222; }
+        button.playpause { color: #ff4444; }
         button.playpause:before { content: '\2589'; }
       }
     }
 
     .workoutView.stopped {
       footer {
-        button.playpause { color: #226622; }
+        button.playpause { color: #44ff44; }
         button.playpause:before { content: '\25ba'; }
       }
     }

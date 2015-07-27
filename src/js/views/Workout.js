@@ -6,21 +6,21 @@ var ClockBar = require('./ClockBar');
 
 module.exports = View.extend({
 
-  autoRender: true,
+  template: `
+    <section class="workoutView stopped">
+      <h2 data-hook="title"></h2>
+      <section class="bar"><canvas data-hook="bar"></canvas></section>
+      <section data-hook="timers" class="timers"></section>
+      <audio data-hook="cues" mozaudiochannel="notification" preload="auto"></audio>
+      <footer class="timer-controls">
+        <button class="previous">&#x21e4;</button>
+        <button class="playpause"><span>&#9658;</span></button>
+        <button class="next">&#x21e5;</button>
+      </footer>
+    </section>
+  `,
 
-  template: [
-    '  <section class="workoutView stopped">',
-    '    <h2 data-hook="title"></h2>',
-    '    <section class="bar"><canvas data-hook="bar"></canvas></section>',
-    '    <section data-hook="timers" class="timers"></section>',
-    '    <audio data-hook="cues" mozaudiochannel="notification" preload="auto"></audio>',
-    '    <footer class="timer-controls">',
-    '     <button class="previous">&#x21e4;</button>',
-    '     <button class="playpause"><span>&#9658;</span></button>',
-    '     <button class="next">&#x21e5;</button>',
-    '    </footer>',
-    '  </section>'
-  ].join(''),
+  autoRender: true,
 
   bindings: {
     'model.title': '[data-hook=title]'

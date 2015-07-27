@@ -4,15 +4,16 @@ var ViewSwitcher = require('ampersand-view-switcher');
 
 module.exports = View.extend({
 
-  template: [
-    '<section class="app home">',
-    '  <h1 class="title">',
-    '    <button class="back">&lt;</button>',
-    '    <span data-hook="title">c25k web</span>',
-    '  </h1>',
-    '  <section class="main" data-hook="main"></section>',
-    '</section>'
-  ].join(''),
+  template: `
+    <section class="app home">
+      <h1 class="title">
+        <button class="back">&lt;</button>
+        <span data-hook="title">c25k web</span>
+        <button class="help">?</button>
+      </h1>
+      <section class="main" data-hook="main"></section>
+    </section>
+  `,
 
   bindings: {
     'model.title': '[data-hook=title]'
@@ -20,6 +21,7 @@ module.exports = View.extend({
 
   events: {
     'click button.back': 'back',
+    'click button.help': 'help'
   },
 
   initialize: function () {
@@ -28,6 +30,10 @@ module.exports = View.extend({
 
   back: function () {
     app.router.navigate('');
+  },
+
+  help: function () {
+    app.router.navigate('help');
   },
 
   handleNewPage: function (view) {
@@ -41,11 +47,10 @@ module.exports = View.extend({
 
     this.switcher = new ViewSwitcher(this.queryByHook('main'), {
       hide: function (oldView, cb) {
-        self.el.classList.remove(oldView.viewClass);
         return cb();
       },
       show: function (newView) {
-        self.el.classList.add(newView.viewClass);
+        self.el.className = 'app ' + newView.viewClass;
       }
     });
 

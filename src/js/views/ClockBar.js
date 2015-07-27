@@ -3,17 +3,17 @@ var Clock = require('./Clock');
 
 module.exports = View.extend({
 
+  template: `
+    <section class="timers">
+      <div class="timer elapsed" data-hook="elapsed"></div>
+      <div class="timer current" data-hook="current"></div>
+      <div class="timer remaining" data-hook="remaining"></div>
+    </section>
+  `,
+
   initialize: function (options) {
     if (this.parent) { this.model = this.parent.model; }
   },
-
-  template: [
-    '<section class="timers">',
-    '<div class="timer elapsed" data-hook="elapsed"></div>',
-    '<div class="timer current" data-hook="current"></div>',
-    '<div class="timer remaining" data-hook="remaining"></div>',
-    '</section>'
-  ].join(''),
 
   subviews: {
     elapsed: {

@@ -29,7 +29,10 @@ module.exports = State.extend({
       cached: true,
       fn: function () {
         if (this.elapsed === 0) {
-          return null;
+          return 0;
+        }
+        if (this.elapsed >= this.duration) {
+          return this.events.length - 1;
         }
         for (var i=0; i<this.events.length; i++) {
           var event = this.events[i];
@@ -65,14 +68,20 @@ module.exports = State.extend({
   },
 
   initialize: function () {
+
+    // Wrap every workout in start & end marker events.
+    this.events.unshift({ type: 'start', duration: 0.01});
+    this.events.push({ type: 'end', duration: 0.01 });
+
     // Pre-calculate the start/end elapsed times & total duration.
     var duration = 0;
     this.events.forEach(function (event) {
       event.startElapsed = duration;
       duration += event.duration * 1000;
-      event.endElapsed = duration;
+      event.endElapsed = duration - 1;
     });
 
+    // Record the total duration, initialize elapsed to 0
     this.duration = duration;
     this.elapsed = 0;
   },
@@ -114,7 +123,14 @@ module.exports = State.extend({
 
     this.last = timeNow;
 
-    setTimeout(this.run.bind(this), TIMER_INTERVAL);
+    if (this.elapsed >= this.duration) {
+      // Handle the end of the workout
+      this.elapsed = this.duration;
+      this.running = false;
+    } else {
+      setTimeout(this.run.bind(this), TIMER_INTERVAL);
+    }
+
     return this;
   }
 

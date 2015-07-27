@@ -3,6 +3,13 @@ var Utils = require('../utils');
 
 module.exports = View.extend({
 
+  template: `
+    <div class="timer">
+      <span class="title" data-hook="title"></span>
+      <span class="minutes" data-hook="minutes">00</span>:<span class="seconds" data-hook="seconds">00</span>
+    </div>
+  `,
+
   autoRender: true,
 
   props: {
@@ -36,14 +43,6 @@ module.exports = View.extend({
       }
     }
   },
-
-  template: [
-    '<div class="timer">',
-    '<span class="title" data-hook="title"></span>',
-    ' <span class="minutes" data-hook="minutes">00</span>',
-    ':<span class="seconds" data-hook="seconds">00</span>',
-    '</div>'
-  ].join(''),
 
   bindings: {
     title: '[data-hook=title]',
