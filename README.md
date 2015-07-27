@@ -35,8 +35,11 @@ TODO
 
 - [ ] More progress cues - eg. time remaining, runs remaining, halfway
 
-- [ ] Submit to Mozilla Marketplace someday?
+- [ ] Submit to Mozilla Marketplace
 
 - [ ] Social progress sharing stuff
 
 - [ ] GPS tracking? (probably should be out of scope)
+
+- [ ] "Views" and what are really small components are all mixed together
+    in the project. Maybe separate them?
