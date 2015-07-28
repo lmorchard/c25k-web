@@ -52,6 +52,7 @@ module.exports = View.extend({
   },
 
   initialize: function (options) {
+    this.listenTo(this.parent.model, 'change:currentEvent', options.updateTime);
     this.listenTo(this.parent.model, 'change:elapsedSkip', options.updateTime);
     options.updateTime.apply(this);
   },

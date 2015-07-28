@@ -6,6 +6,7 @@ var WorkoutBar = module.exports = View.extend({
 
   initialize: function (options) {
     if (this.parent) { this.model = this.parent.model; }
+    this.updateTimeOnClick = !!options.updateTimeOnClick;
 
     this.listenTo(this.model, 'change:elapsedSkip', this.drawBar);
     this.listenTo(this.model, 'change:currentEvent', this.drawBar);
@@ -46,7 +47,7 @@ var WorkoutBar = module.exports = View.extend({
 
     var ctx = this.el.getContext('2d');
 
-    var widthByDuration = this.el.width / this.model.duration;
+    var widthByDuration = this.widthByDuration = this.el.width / this.model.duration;
 
     // TODO: Make this configurable
     var colors = {
@@ -80,6 +81,55 @@ var WorkoutBar = module.exports = View.extend({
     var width = event.endElapsed * widthByDuration - startX;
     var startY = (this.el.height - barHeight) / 2;
     ctx.fillRect(startX, startY, width, barHeight);
+  },
+
+  events: {
+    'click': 'click',
+    'mousedown': 'mousedown',
+    'mouseup': 'mouseup',
+    'mousemove': 'mousemove',
+    'touchstart': 'touchstart',
+    'touchend': 'touchend',
+    'touchmove': 'touchmove'
+  },
+
+  updateTimeFromUI: function (x) {
+    if (!this.updateTimeOnClick) { return; }
+    if (!this.widthByDuration) { return; }
+    var barRect = this.el.getBoundingClientRect();
+    this.model.elapsed = (x - barRect.left) / this.widthByDuration;
+  },
+
+  click: function (ev) {
+    return this.updateTimeFromUI(ev.clientX);
+  },
+
+  mousedown: function (ev) {
+    this.isDragging = true;
+  },
+
+  mouseup: function (ev) {
+    this.isDragging = false;
+  },
+
+  mousemove: function (ev) {
+    if (this.isDragging) {
+      return this.updateTimeFromUI(ev.clientX);
+    }
+  },
+
+  touchstart: function (ev) {
+    this.isTouching = true;
+  },
+
+  touchend: function (ev) {
+    this.isTouching = false;
+  },
+
+  touchmove: function (ev) {
+    if (this.isTouching) {
+      return this.updateTimeFromUI(ev.touches[0].clientX);
+    }
   }
 
 });

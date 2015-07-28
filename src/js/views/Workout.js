@@ -29,7 +29,13 @@ module.exports = View.extend({
   subviews: {
     bar: {
       container: '[data-hook=bar]',
-      constructor: WorkoutBar
+      constructor: function (options) {
+        return new WorkoutBar({
+          parent: options.parent,
+          el: options.el,
+          updateTimeOnClick: true
+        })
+      }
     },
     timers: {
       container: '[data-hook=timers]',
