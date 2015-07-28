@@ -8,12 +8,13 @@ var WorkoutBar = module.exports = View.extend({
     if (this.parent) { this.model = this.parent.model; }
     this.updateTimeOnClick = !!options.updateTimeOnClick;
 
-    this.listenTo(this.model, 'change:elapsedSkip', this.drawBar);
-    this.listenTo(this.model, 'change:currentEvent', this.drawBar);
+    this.throttledDrawBar = throttle(this.drawBar.bind(this), 16);
 
-    this.resizeHandler = throttle(this.drawBar.bind(this), 66);
-    window.addEventListener('resize', this.resizeHandler, false);
-    window.addEventListener('orientationchange', this.resizeHandler, false);
+    this.listenTo(this.model, 'change:elapsedSkip', this.throttledDrawBar);
+    this.listenTo(this.model, 'change:currentEvent', this.throttledDrawBar);
+
+    window.addEventListener('resize', this.throttledDrawBar, false);
+    window.addEventListener('orientationchange', this.throttledDrawBar, false);
   },
 
   remove: function () {
