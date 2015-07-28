@@ -6,6 +6,7 @@ var TIMER_INTERVAL = 100;
 module.exports = State.extend({
 
   props: {
+    id: 'string',
     title: 'string',
     events: 'array',
     duration: 'number',

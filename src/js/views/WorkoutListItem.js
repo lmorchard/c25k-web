@@ -22,7 +22,7 @@ module.exports = View.extend({
 
   selectWorkout: function () {
     // TODO: Come up with a better index than cid?
-    app.router.navigate('workouts/' + this.model.cid);
+    app.router.navigate('workouts/' + this.model.id);
   },
 
   subviews: {

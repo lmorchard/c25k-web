@@ -2,6 +2,7 @@
   title: "Couch-to-5k ®",
   workouts: [
     {
+      id: 'w1d1',
       title: "Week 1, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -17,6 +18,7 @@
       ]
     },
     {
+      id: 'w1d2',
       title: "Week 1, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -32,6 +34,7 @@
       ]
     },
     {
+      id: 'w1d3',
       title: "Week 1, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
@@ -47,6 +50,7 @@
       ]
     },
     {
+      id: 'w2d1',
       title: "Week 2, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -60,6 +64,7 @@
       ]
     },
     {
+      id: 'w2d2',
       title: "Week 2, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -73,6 +78,7 @@
       ]
     },
     {
+      id: 'w2d3',
       title: "Week 2, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
@@ -86,6 +92,7 @@
       ]
     },
     {
+      id: 'w3d1',
       title: "Week 3, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -97,6 +104,7 @@
       ]
     },
     {
+      id: 'w3d2',
       title: "Week 3, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -108,6 +116,7 @@
       ]
     },
     {
+      id: 'w3d3',
       title: "Week 3, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
@@ -119,6 +128,7 @@
       ]
     },
     {
+      id: 'w4d1',
       title: "Week 4, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -130,6 +140,7 @@
       ]
     },
     {
+      id: 'w4d2',
       title: "Week 4, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -141,6 +152,7 @@
       ]
     },
     {
+      id: 'w4d3',
       title: "Week 4, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
@@ -152,6 +164,7 @@
       ]
     },
     {
+      id: 'w5d1',
       title: "Week 5, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -164,6 +177,7 @@
       ]
     },
     {
+      id: 'w5d2',
       title: "Week 5, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -174,6 +188,7 @@
       ]
     },
     {
+      id: 'w5d3',
       title: "Week 5, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
@@ -182,6 +197,7 @@
       ]
     },
     {
+      id: 'w6d1',
       title: "Week 6, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -194,6 +210,7 @@
       ]
     },
     {
+      id: 'w6d2',
       title: "Week 6, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -204,6 +221,7 @@
       ]
     },
     {
+      id: 'w6d3',
       title: "Week 6, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
@@ -212,6 +230,7 @@
       ]
     },
     {
+      id: 'w7d1',
       title: "Week 7, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -220,6 +239,7 @@
       ]
     },
     {
+      id: 'w7d2',
       title: "Week 7, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -228,6 +248,7 @@
       ]
     },
     {
+      id: 'w7d3',
       title: "Week 7, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
@@ -236,6 +257,7 @@
       ]
     },
     {
+      id: 'w8d1',
       title: "Week 8, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -244,6 +266,7 @@
       ]
     },
     {
+      id: 'w8d2',
       title: "Week 8, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -252,6 +275,7 @@
       ]
     },
     {
+      id: 'w8d3',
       title: "Week 8, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
@@ -260,6 +284,7 @@
       ]
     },
     {
+      id: 'w9d1',
       title: "Week 9, Workout 1",
       events: [
         { type: "warmup", duration: 300 },
@@ -268,6 +293,7 @@
       ]
     },
     {
+      id: 'w9d2',
       title: "Week 9, Workout 2",
       events: [
         { type: "warmup", duration: 300 },
@@ -276,6 +302,7 @@
       ]
     },
     {
+      id: 'w9d3',
       title: "Week 9, Workout 3",
       events: [
         { type: "warmup", duration: 300 },
