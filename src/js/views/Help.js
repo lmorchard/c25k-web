@@ -9,12 +9,22 @@ module.exports = View.extend({
       <p>
         This is <a href="https://github.com/lmorchard/c25k-web">a free and
         Open Source web app</a> built by me (<a href="http://lmorchard.com">@lmorchard</a>)
-        to help complete the Couch-to-5k ® running program.
+        to help myself complete the Couch-to-5k ® running program.
       </p>
       <p>
-        To start, tap the "&lt" button in
-        the top corner. Then, tap any of the workouts in the list to pick
-        what you want to do.
+        To start, tap the <code>&lt;</code> button in
+        the top corner.
+        The <code>?</code> button in the opposite corner will bring you back to this screen.
+      </p>
+      <p>
+        The home screen offers a list of workouts.
+        You can choose one of them with a tap.
+      </p>
+      <p>
+        Within a workout, the <code>&#9658;</code> button will start &amp; pause
+        the timer. The <code>&#x21e4;</code> and
+        <code>&#x21e5;</code> buttons will let you navigate back &amp; forth
+        through segments of the workout.
       </p>
 
       <h3>About Couch-to-5k ®</h3>
