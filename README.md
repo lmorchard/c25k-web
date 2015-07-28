@@ -21,9 +21,15 @@ gulp deploy # updates gh-pages branch
 TODO
 ----
 
-- [ ] Save elapsed progress for each workout
+- [ ] "First run" experience by showing Help view
 
-- [ ] Help / about view explaining what this thing is
+- [ ] Indicate workout completion - cross out title? big green check?
+
+- [ ] Save elapsed progress locally for each workout
+
+- [ ] Sync elapsed progress to some cloud service
+
+- [ ] Bigger screen view for reviewing / sharing progress
 
 - [ ] Left/right swipe on workout view to navigate next/prev workout
 
@@ -42,4 +48,7 @@ TODO
 - [ ] GPS tracking? (probably should be out of scope)
 
 - [ ] "Views" and what are really small components are all mixed together
-    in the project. Maybe separate them?
+  in the project. Maybe separate them?
+
+- [ ] Progressive tab app - offer to install after a few visits,
+  or immediately from the help view
