@@ -64,6 +64,8 @@ body {
 }
 .app section.main {
   height: 100%;
+}
+.app section.main .workoutList {
   margin-top: 50px;
 }
 .app section.main .workoutList ul.workouts {
@@ -93,11 +95,18 @@ body {
   margin: 0.25em auto 0.25em auto;
 }
 .app section.main .helpView {
+  margin-top: 50px;
   padding: 1em 2em;
+}
+.app section.main .helpView p code {
+  border-radius: 0;
+  background: #888;
+  padding: 0 0.5em;
+  color: #000;
+  font-weight: bold;
 }
 .app section.main .workoutView {
   height: 100%;
-  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
