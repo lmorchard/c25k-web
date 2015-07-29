@@ -62,8 +62,14 @@ body {
 .app.help button.help {
   display: none;
 }
+.app.startup button {
+  display: none;
+}
 .app section.main {
   height: 100%;
+}
+.app section.main .startupView {
+  margin-top: 50px;
 }
 .app section.main .workoutList {
   margin-top: 50px;
@@ -87,6 +93,15 @@ body {
   text-align: center;
   font-family: monospace;
   font-size: 1.5em;
+}
+.app section.main .workoutList ul.workouts li.workout.finished .title {
+  color: #666;
+}
+.app section.main .workoutList ul.workouts li.workout.finished .title:after {
+  content: "\00a0\2713";
+  color: #3f3;
+  font-size: 0.85em;
+  margin-right: -1em;
 }
 .app section.main .workoutList ul.workouts li.workout .workoutBar {
   display: block;
