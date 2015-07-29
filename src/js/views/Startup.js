@@ -4,7 +4,7 @@ module.exports = View.extend({
 
   template: `
     <section class="startupView">
-      <h2>Loading to Couch-to-5k ®...</h2>
+      <h2>Loading workouts...</h2>
     </section>
   `,
 

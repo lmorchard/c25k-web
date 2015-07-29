@@ -1,6 +1,7 @@
 var View = require('ampersand-view');
 var Utils = require('../utils');
 var throttle = require('lodash.throttle');
+var defer = require('lodash.defer');
 
 var WorkoutBar = module.exports = View.extend({
 
@@ -27,7 +28,7 @@ var WorkoutBar = module.exports = View.extend({
     if (!this.el) {
       this.el = document.createElement('canvas');
     }
-    this.drawBar();
+    defer(this.throttledDrawBar);
   },
 
   drawBar: function () {

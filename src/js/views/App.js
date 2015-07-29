@@ -37,6 +37,7 @@ module.exports = View.extend({
   },
 
   handleNewPage: function (view) {
+    window.scrollTo(0, 0);
     this.switcher.set(view);
   },
 
