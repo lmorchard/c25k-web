@@ -30,6 +30,22 @@ module.exports = View.extend({
       container: '.workoutBar canvas',
       constructor: WorkoutBar
     }
+  },
+
+  render: function (opts) {
+    this.renderWithTemplate(this);
+    this.el.setAttribute('id', this.model.id);
+    this.listenTo(this.model, 'change:currentEvent', this.updateCompletionStatus);
+    this.updateCompletionStatus();
+    return this;
+  },
+
+  updateCompletionStatus: function () {
+    if (this.model.currentEvent.type === 'end') {
+      this.el.classList.add('finished');
+    } else {
+      this.el.classList.remove('finished');
+    }
   }
 
 });

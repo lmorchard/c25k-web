@@ -65,9 +65,17 @@ body {
     display: none;
   }
 
+  &.startup button {
+    display: none;
+  }
+
   section.main {
     height: 100%;
     // margin-top: 50px;
+
+    .startupView {
+      margin-top: 50px;
+    }
 
     .workoutList {
       margin-top: 50px;
@@ -92,6 +100,17 @@ body {
             font-size: 1.5em;
           }
 
+          &.finished .title {
+            color: #666;
+          }
+
+          &.finished .title:after {
+            content: "\00a0\2713";
+            color: #33ff33;
+            font-size: 0.85em;
+            margin-right: -1em;
+          }
+
           .workoutBar {
             display: block;
             width: 85%;
@@ -107,7 +126,7 @@ body {
 
     .helpView {
       margin-top: 50px;
-      
+
       padding: 1em 2em;
 
       p code {
