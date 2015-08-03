@@ -71,6 +71,11 @@ body {
 .app section.main .startupView {
   margin-top: 50px;
 }
+.app section.main .startupView h2 {
+  line-height: 100vh;
+  text-align: center;
+  color: #999;
+}
 .app section.main .workoutList {
   margin-top: 50px;
 }
