@@ -6,6 +6,10 @@
     "name": "Les Orchard",
     "url": "http://lmorchard.com"
   },
+  "icons": {
+    "512": "/img/icon-512.png",
+    "128": "/img/icon-128.png"
+  },
   "type": "privileged",
   "permissions": {
     "audio-channel-notification": {

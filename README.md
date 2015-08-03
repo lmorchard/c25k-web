@@ -8,6 +8,12 @@ handy.
 [c25k]: http://www.coolrunning.com/engine/2/2_3/181.shtml
 [ampersand]: http://ampersandjs.com/
 
+Credits
+-------
+
+Sofa by jon trillana from the Noun Project
+Runner by Arthur Skripnik from the Noun Project
+
 Hacking
 -------
 ```
